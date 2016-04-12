@@ -30,5 +30,5 @@ Please be aware that users can now be hijacked not only using POST requests, but
 
 ## Configuration
 
-# `HIJACK_BUTTON_TEMPLATE`
-Path to template for the "Hijack" buttons in the admin backend. Default: `'hijack_admin/admin_button.html'`
+### `HIJACK_BUTTON_TEMPLATE`
+Path to the template for the "Hijack" buttons. Default: `'hijack_admin/admin_button.html'`
