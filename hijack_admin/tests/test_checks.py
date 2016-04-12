@@ -19,21 +19,21 @@ else:
 
         def test_check_get_requests_allowed(self):
 
-            with SettingsOverride(hijack_settings, HIJACK_ALLOW_GET_REQUESTS=True):
-                errors = checks.check_get_requests_allowed(HijackAdminConfig)
-                self.assertFalse(errors)
-
-            self.assertFalse(hijack_settings.HIJACK_ALLOW_GET_REQUESTS)
+            self.assertTrue(hijack_settings.HIJACK_ALLOW_GET_REQUESTS)
             errors = checks.check_get_requests_allowed(HijackAdminConfig)
-            expected_errors = [
-                Error(
-                    'Hijack GET requests must be allowed for django-hijack-admin to work.',
-                    hint='Set HIJACK_ALLOW_GET_REQUESTS to True.',
-                    obj=None,
-                    id='hijack_admin.E001',
-                )
-            ]
-            self.assertEqual(errors, expected_errors)
+            self.assertFalse(errors)
+
+            with SettingsOverride(hijack_settings, HIJACK_ALLOW_GET_REQUESTS=False):
+                errors = checks.check_get_requests_allowed(HijackAdminConfig)
+                expected_errors = [
+                    Error(
+                        'Hijack GET requests must be allowed for django-hijack-admin to work.',
+                        hint='Set HIJACK_ALLOW_GET_REQUESTS to True.',
+                        obj=None,
+                        id='hijack_admin.E001',
+                    )
+                ]
+                self.assertEqual(errors, expected_errors)
 
         def test_check_custom_user_model(self):
             warnings = checks.check_custom_user_model(HijackAdminConfig)
