@@ -1,0 +1,4 @@
+[run]
+source = hijack_admin
+omit =
+    hijack_admin/tests/*
