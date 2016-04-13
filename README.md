@@ -32,3 +32,7 @@ Please be aware that users can now be hijacked not only using POST requests, but
 
 ### `HIJACK_BUTTON_TEMPLATE`
 Path to the template for the "Hijack" buttons. Default: `'hijack_admin/admin_button.html'`
+
+### `HIJACK_REGISTER_ADMIN`
+Whether the user model should be registered with `HijackUserAdmin` automatically. Default: `True`
+

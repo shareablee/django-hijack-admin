@@ -46,6 +46,7 @@ class HijackUserAdmin(HijackUserAdminMixin, UserAdmin):
     list_filter = ('is_staff', 'is_superuser')
     search_fields = ('username', 'first_name', 'last_name', 'email', )
 
-UserModel = get_user_model()
-admin.site.unregister(UserModel)
-admin.site.register(UserModel, HijackUserAdmin)
+if hijack_admin_settings.HIJACK_REGISTER_ADMIN:
+    UserModel = get_user_model()
+    admin.site.unregister(UserModel)
+    admin.site.register(UserModel, HijackUserAdmin)
