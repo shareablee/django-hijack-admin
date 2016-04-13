@@ -36,3 +36,17 @@ Path to the template for the "Hijack" buttons. Default: `'hijack_admin/admin_but
 ### `HIJACK_REGISTER_ADMIN`
 Whether the user model should be registered with `HijackUserAdmin` automatically. Default: `True`
 
+## Custom user admins
+Custom user admins are supported. Just set `HIJACK_REGISTER_ADMIN = False` and 
+modify your custom admin class as shown in this example:
+
+```python
+# admin.py
+from hijack.admin import HijackUserAdminMixin
+
+class MyUserAdmin(UserAdmin, HijackUserAdminMixin):
+    list_display = (
+        ...
+        'hijack_field',  # Hijack button
+    )
+```
