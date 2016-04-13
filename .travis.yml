@@ -15,8 +15,6 @@ sudo: false
 
 install:
     - pip install -r requirements.txt
-    - pip uninstall -y django-hijack
-    - pip install git+https://github.com/arteria/django-hijack.git
     - pip install -r requirements-test.txt
     - pip install $DJANGO
     - pip install coveralls
