@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
+from compat import get_user_model
 import django
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from hijack_admin.admin import HijackUserAdmin
+from hijack_admin.tests.test_app.models import BasicModel
 from hijack.tests.utils import SettingsOverride
 
 if django.VERSION < (1, 7):
@@ -7,7 +12,7 @@ if django.VERSION < (1, 7):
 else:
     from django.conf import settings
     from django.core.checks import Error, Warning
-    from django.test import TestCase
+    from django.test import TestCase, override_settings
 
     from hijack import settings as hijack_settings
 
@@ -35,18 +40,36 @@ else:
                 ]
                 self.assertEqual(errors, expected_errors)
 
-        def test_check_custom_user_model(self):
+        def test_check_default_user_model(self):
             warnings = checks.check_custom_user_model(HijackAdminConfig)
             self.assertFalse(warnings)
 
-            with self.settings(AUTH_USER_MODEL='my_auth_user_model'):
-                warnings = checks.check_custom_user_model(HijackAdminConfig)
-                expected_warnings = [
-                    Warning(
-                        'django-hijack-admin does not work out the box with a custom user model.',
-                        hint='Please mix HijackUserAdminMixin into your custom UserAdmin.',
-                        obj=settings.AUTH_USER_MODEL,
-                        id='hijack_admin.W001',
-                    )
-                ]
-                self.assertEqual(warnings, expected_warnings)
+        @override_settings(AUTH_USER_MODEL='test_app.BasicModel')
+        def test_check_custom_user_model(self):
+            # Django doesn't re-register admins when using `override_settings`,
+            # so we have to do it manually in this test case.
+            admin.site.register(get_user_model(), HijackUserAdmin)
+
+            warnings = checks.check_custom_user_model(HijackAdminConfig)
+            self.assertFalse(warnings)
+
+            admin.site.unregister(get_user_model())
+
+        @override_settings(AUTH_USER_MODEL='test_app.BasicModel')
+        def test_check_custom_user_model_default_admin(self):
+            # Django doesn't re-register admins when using `override_settings`,
+            # so we have to do it manually in this test case.
+            admin.site.register(get_user_model(), UserAdmin)
+
+            warnings = checks.check_custom_user_model(HijackAdminConfig)
+            expected_warnings = [
+                Warning(
+                    'django-hijack-admin does not work out the box with a custom user model.',
+                    hint='Please mix HijackUserAdminMixin into your custom UserAdmin.',
+                    obj=settings.AUTH_USER_MODEL,
+                    id='hijack_admin.W001',
+                )
+            ]
+            self.assertEqual(warnings, expected_warnings)
+
+            admin.site.unregister(get_user_model())
