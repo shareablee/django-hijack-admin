@@ -42,7 +42,7 @@ modify your custom admin class as shown in this example:
 
 ```python
 # admin.py
-from hijack.admin import HijackUserAdminMixin
+from hijack_admin.admin import HijackUserAdminMixin
 
 class MyUserAdmin(UserAdmin, HijackUserAdminMixin):
     list_display = (
