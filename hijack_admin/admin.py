@@ -41,10 +41,7 @@ class HijackUserAdminMixin(object):
 
 
 class HijackUserAdmin(HijackUserAdminMixin, UserAdmin):
-    list_display = ('username', 'email', 'first_name', 'last_name',
-                    'last_login', 'date_joined', 'is_staff', 'hijack_field', )
-    list_filter = ('is_staff', 'is_superuser')
-    search_fields = ('username', 'first_name', 'last_name', 'email', )
+    list_display = UserAdmin.list_display + ('hijack_field', )
 
 if hijack_admin_settings.HIJACK_REGISTER_ADMIN:
     UserModel = get_user_model()
