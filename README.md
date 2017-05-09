@@ -4,6 +4,7 @@ Django admin integration for Django Hijack (https://github.com/arteria/django-hi
 
 [![Build Status](https://travis-ci.org/arteria/django-hijack-admin.svg?branch=master)](https://travis-ci.org/arteria/django-hijack-admin)
 [![Coverage Status](https://coveralls.io/repos/arteria/django-hijack-admin/badge.svg?branch=master&service=github)](https://coveralls.io/github/arteria/django-hijack-admin?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/django-hijack-admin.svg)](https://pypi.python.org/pypi/django-hijack-admin)
 
 ![Screenshot of django-hijack in action on the admin site.](docs/admin-screenshot.png)
 
