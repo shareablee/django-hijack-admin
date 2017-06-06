@@ -40,8 +40,15 @@ class HijackUserAdminMixin(object):
     hijack_field.short_description = _('Hijack user')
 
 
+class HijackRelatedAdminMixin(HijackUserAdminMixin):
+
+    def hijack_field(self, obj):
+        return super(HijackRelatedAdminMixin, self).hijack_field(obj.user)
+
+
 class HijackUserAdmin(HijackUserAdminMixin, UserAdmin):
     list_display = UserAdmin.list_display + ('hijack_field', )
+
 
 if hijack_admin_settings.HIJACK_REGISTER_ADMIN:
     UserModel = get_user_model()

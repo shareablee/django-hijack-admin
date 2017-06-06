@@ -51,3 +51,16 @@ class MyUserAdmin(UserAdmin, HijackUserAdminMixin):
         'hijack_field',  # Hijack button
     )
 ```
+
+## Models with ForeignKey to User
+You can also add the hijack field to a model that is related to the User 
+model with the `HijackRelatedAdminMixin`.
+
+```python
+#admin.py
+from django.contrib import Admin
+from hijack_admin.admin import HijackRelatedAdminMixin
+
+class MyCustomerAdmin(HijackRelatedAdminMixin, admin.ModelAdmin)
+    list_display = ('user', 'hijack_field')
+```
