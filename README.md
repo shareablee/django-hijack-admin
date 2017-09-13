@@ -64,3 +64,8 @@ from hijack_admin.admin import HijackRelatedAdminMixin
 class MyCustomerAdmin(HijackRelatedAdminMixin, admin.ModelAdmin)
     list_display = ('user', 'hijack_field')
 ```
+
+
+| django-hijack-admin is free software. If you find it useful and would like to give back, please consider to make a donation using [Bitcoin](https://blockchain.info/payment_request?address=1AJkbQdcNkrHzxi91mB1kkPxh4t4BJ4hu4) or [PayPal](https://www.paypal.me/arteriagmbh). Thank you! |
+| ----- |
+
