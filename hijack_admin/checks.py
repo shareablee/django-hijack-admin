@@ -6,10 +6,10 @@ from django.contrib.admin.sites import site
 from django.contrib.auth import get_user_model
 
 from hijack import settings as hijack_settings
-from hijack_admin.admin import HijackUserAdminMixin
 
 
 def _using_hijack_admin_mixin():
+    from hijack_admin.admin import HijackUserAdminMixin
     user_admin_class = type(site._registry.get(get_user_model(), None))
     return issubclass(user_admin_class, HijackUserAdminMixin)
 
@@ -29,6 +29,7 @@ def check_get_requests_allowed(app_configs, **kwargs):
 
 
 def check_custom_user_model(app_configs, **kwargs):
+    from hijack_admin.admin import HijackUserAdminMixin
     warnings = []
     if (settings.AUTH_USER_MODEL != DEFAULT_AUTH_USER_MODEL and
             not _using_hijack_admin_mixin()):
