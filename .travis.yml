@@ -2,20 +2,10 @@ language: python
 
 # this list can be easily generated py running `tox -l`
 env:
-<<<<<<< HEAD
     - TOX_ENV=py27-django18
     - TOX_ENV=py27-django19
     - TOX_ENV=py27-django110
     - TOX_ENV=py27-django111
-=======
-    - DJANGO=django==1.4.* DJANGO_NOSE=django-nose==1.4.3
-    - DJANGO=django==1.6.* DJANGO_NOSE=django-nose==1.4.3
-    - DJANGO=django==1.7.* DJANGO_NOSE=django-nose==1.4.3
-    - DJANGO=django==1.8.* DJANGO_NOSE=django-nose==1.4.4
-    - DJANGO=django==1.9.* DJANGO_NOSE=django-nose==1.4.4
-    - DJANGO=django==1.10.* DJANGO_NOSE=django-nose==1.4.4
-    - DJANGO=django==1.11.* DJANGO_NOSE=django-nose==1.4.4
->>>>>>> master
 
 # Currently, Python 3.5 Interpreter is only available when it is specified
 # in the travis python section. So we have to work around this with this include
