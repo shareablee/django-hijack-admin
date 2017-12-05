@@ -27,20 +27,26 @@ NOSE_ARGS = []
 
 TEMPLATE_DIRS = (os.path.join(APP_ROOT, 'tests/test_app/templates'), )
 
-PASSWORD_HASHERS = ('django.contrib.auth.hashers.PBKDF2PasswordHasher',
-                    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-                    'django.contrib.auth.hashers.BCryptPasswordHasher',
-                    'django.contrib.auth.hashers.SHA1PasswordHasher',
-                    'django.contrib.auth.hashers.MD5PasswordHasher',
-                    'django.contrib.auth.hashers.CryptPasswordHasher', )
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+)
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    # 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+MIDDLEWARE_CLASSES = MIDDLEWARE
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
@@ -73,8 +79,7 @@ TEMPLATES = [
     },
 ]
 
-
-EXTERNAL_APPS = [
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.auth',
@@ -84,17 +89,13 @@ EXTERNAL_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django.contrib.sites',
+
     'django_nose',
     'compat',
     'hijack',
-]
-
-INTERNAL_APPS = [
     'hijack_admin',
     'hijack_admin.tests.test_app',
 ]
-
-INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
 
 SECRET_KEY = 'foobar'
 
