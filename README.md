@@ -4,6 +4,7 @@ Django admin integration for Django Hijack (https://github.com/arteria/django-hi
 
 [![Build Status](https://travis-ci.org/arteria/django-hijack-admin.svg?branch=master)](https://travis-ci.org/arteria/django-hijack-admin)
 [![Coverage Status](https://coveralls.io/repos/arteria/django-hijack-admin/badge.svg?branch=master&service=github)](https://coveralls.io/github/arteria/django-hijack-admin?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/django-hijack-admin.svg)](https://pypi.python.org/pypi/django-hijack-admin)
 
 ![Screenshot of django-hijack in action on the admin site.](docs/admin-screenshot.png)
 
@@ -50,3 +51,21 @@ class MyUserAdmin(UserAdmin, HijackUserAdminMixin):
         'hijack_field',  # Hijack button
     )
 ```
+
+## Models with ForeignKey to User
+You can also add the hijack field to a model that is related to the User 
+model with the `HijackRelatedAdminMixin`.
+
+```python
+#admin.py
+from django.contrib import Admin
+from hijack_admin.admin import HijackRelatedAdminMixin
+
+class MyCustomerAdmin(HijackRelatedAdminMixin, admin.ModelAdmin)
+    list_display = ('user', 'hijack_field')
+```
+
+
+| django-hijack-admin is free software. If you find it useful and would like to give back, please consider to make a donation using [Bitcoin](https://blockchain.info/payment_request?address=1AJkbQdcNkrHzxi91mB1kkPxh4t4BJ4hu4) or [PayPal](https://www.paypal.me/arteriagmbh). Thank you! |
+| ----- |
+
