@@ -7,4 +7,4 @@ class BasicModel(models.Model):
 
 
 class RelatedModel(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='related')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='related', on_delete=models.CASCADE)
