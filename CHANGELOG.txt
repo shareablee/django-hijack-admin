@@ -1,6 +1,10 @@
 === (ongoing) ===
 -
 
+== (2.1.5) ==
+- Django 2.0 support
+- Add a Hijack mixin for models with a ForeignKey to user #12
+
 == (2.1.4) ==
 - Django 1.11 support
 
@@ -8,7 +12,6 @@
 - Settings of UserAdmin such as list_display are not overridden anymore, only the hijack button is added
 - Add French translation
 - Include compiled messages in package
-
 
 == (2.1.2) ==
 - Django 1.10 compatibility
