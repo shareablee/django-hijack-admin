@@ -1,6 +1,9 @@
 === (ongoing) ===
 -
 
+== (2.1.6) ==
+- Add Russian localization
+
 == (2.1.5) ==
 - Django 2.0 support
 - Add a Hijack mixin for models with a ForeignKey to user #12
