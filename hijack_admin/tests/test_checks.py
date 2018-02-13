@@ -77,6 +77,7 @@ else:
             class CustomAdminSite(admin.AdminSite):
                 pass
 
+            _default_site = admin.site
             admin.site = CustomAdminSite()
             admin.autodiscover()
 
@@ -86,3 +87,4 @@ else:
             self.assertFalse(warnings)
 
             admin.site.unregister(get_user_model())
+            admin.site = _default_site
