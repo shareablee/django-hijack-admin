@@ -71,3 +71,18 @@ else:
             self.assertEqual(warnings, expected_warnings)
 
             admin.site.unregister(get_user_model())
+
+        @override_settings(AUTH_USER_MODEL='test_app.BasicModel')
+        def test_check_custom_user_model_custom_admin(self):
+            class CustomAdminSite(admin.AdminSite):
+                pass
+
+            admin.site = CustomAdminSite()
+            admin.autodiscover()
+
+            admin.site.register(get_user_model(), HijackUserAdmin)
+
+            warnings = checks.check_custom_user_model(HijackAdminConfig)
+            self.assertFalse(warnings)
+
+            admin.site.unregister(get_user_model())
