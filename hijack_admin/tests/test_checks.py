@@ -4,7 +4,6 @@ import django
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from hijack_admin.admin import HijackUserAdmin
-from hijack_admin.tests.test_app.models import BasicModel
 from hijack.tests.utils import SettingsOverride
 
 if django.VERSION < (1, 7):
