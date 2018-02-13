@@ -18,7 +18,6 @@ else:
     from hijack_admin import checks
     from hijack_admin.apps import HijackAdminConfig
 
-
     class ChecksTests(TestCase):
 
         def test_check_get_requests_allowed(self):
