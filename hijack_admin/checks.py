@@ -2,21 +2,20 @@
 from django.core.checks import Error, Warning, register
 from django.conf.global_settings import AUTH_USER_MODEL as DEFAULT_AUTH_USER_MODEL
 from django.conf import settings
-from django.contrib.admin.sites import site
+from django.contrib import admin
 from django.contrib.auth import get_user_model
 
 from hijack import settings as hijack_settings
-from hijack_admin.admin import HijackUserAdminMixin
 
 
 def _using_hijack_admin_mixin():
+    from hijack_admin.admin import HijackUserAdminMixin
+
     user_admin_class_name = getattr(
         settings, 'HIJACK_USER_ADMIN_CLASS_NAME', None)
-
-    if user_admin_class_name:
-        user_admin_class = user_admin_class_name
-    else:
-        user_admin_class = type(site._registry.get(get_user_model(), None))
+    user_admin_class = user_admin_class_name \
+        if user_admin_class_name else type(
+            admin.site._registry.get(get_user_model(), None))
 
     return issubclass(user_admin_class, HijackUserAdminMixin)
 

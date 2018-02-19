@@ -4,7 +4,6 @@ import django
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from hijack_admin.admin import HijackUserAdmin
-from hijack_admin.tests.test_app.models import BasicModel
 from hijack.tests.utils import SettingsOverride
 
 if django.VERSION < (1, 7):
@@ -18,7 +17,6 @@ else:
 
     from hijack_admin import checks
     from hijack_admin.apps import HijackAdminConfig
-
 
     class ChecksTests(TestCase):
 
@@ -73,3 +71,20 @@ else:
             self.assertEqual(warnings, expected_warnings)
 
             admin.site.unregister(get_user_model())
+
+        @override_settings(AUTH_USER_MODEL='test_app.BasicModel')
+        def test_check_custom_user_model_custom_admin(self):
+            class CustomAdminSite(admin.AdminSite):
+                pass
+
+            _default_site = admin.site
+            admin.site = CustomAdminSite()
+            admin.autodiscover()
+
+            admin.site.register(get_user_model(), HijackUserAdmin)
+
+            warnings = checks.check_custom_user_model(HijackAdminConfig)
+            self.assertFalse(warnings)
+
+            admin.site.unregister(get_user_model())
+            admin.site = _default_site
