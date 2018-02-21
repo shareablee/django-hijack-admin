@@ -38,7 +38,7 @@ Path to the template for the "Hijack" buttons. Default: `'hijack_admin/admin_but
 Whether the user model should be registered with `HijackUserAdmin` automatically. Default: `True`
 
 ## Custom user admins
-Custom user admins are supported. Just set `HIJACK_REGISTER_ADMIN = False` and 
+Custom user admins are supported. Just set `HIJACK_REGISTER_ADMIN = False` and
 modify your custom admin class as shown in this example:
 
 ```python
@@ -53,7 +53,7 @@ class MyUserAdmin(UserAdmin, HijackUserAdminMixin):
 ```
 
 ## Models with ForeignKey to User
-You can also add the hijack field to a model that is related to the User 
+You can also add the hijack field to a model that is related to the User
 model with the `HijackRelatedAdminMixin`.
 
 ```python
@@ -66,6 +66,9 @@ class MyCustomerAdmin(HijackRelatedAdminMixin, admin.ModelAdmin)
 ```
 
 
+# Contributing
+Anyone and everyone is welcome to contribute. Please take a moment to review the [guidelines for contributing](CONTRIBUTING.md).
+
+
 | django-hijack-admin is free software. If you find it useful and would like to give back, please consider to make a donation using [Bitcoin](https://blockchain.info/payment_request?address=1AJkbQdcNkrHzxi91mB1kkPxh4t4BJ4hu4) or [PayPal](https://www.paypal.me/arteriagmbh). Thank you! |
 | ----- |
-
