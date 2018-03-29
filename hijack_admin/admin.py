@@ -4,7 +4,6 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
-from django import VERSION
 
 from hijack import settings as hijack_settings
 from hijack_admin import settings as hijack_admin_settings
@@ -13,9 +12,6 @@ try:
     from django.urls import reverse
 except ImportError:
     from django.core.urlresolvers import reverse
-
-if VERSION < (1, 8):
-    from django.template import Context
 
 
 class HijackUserAdminMixin(object):
@@ -35,8 +31,6 @@ class HijackUserAdminMixin(object):
             'hijack_url': hijack_url,
             'username': str(obj),
         }
-        if VERSION < (1, 8):
-            button_context = Context(button_context)
 
         return button_template.render(button_context)
 
