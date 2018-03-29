@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-
 from hijack.tests.test_hijack import BaseHijackTests
-from hijack.tests.utils import SettingsOverride
 
 from hijack_admin import settings as hijack_admin_settings
 from hijack_admin.tests.test_app.models import RelatedModel
