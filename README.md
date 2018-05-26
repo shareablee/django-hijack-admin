@@ -37,6 +37,10 @@ Path to the template for the "Hijack" buttons. Default: `'hijack_admin/admin_but
 ### `HIJACK_REGISTER_ADMIN`
 Whether the user model should be registered with `HijackUserAdmin` automatically. Default: `True`
 
+### `HIJACK_USER_ADMIN_CLASS_NAME`
+
+Adds the possibility to configure the admin class name.
+
 ## Custom user admins
 Custom user admins are supported. Just set `HIJACK_REGISTER_ADMIN = False` and
 modify your custom admin class as shown in this example:
