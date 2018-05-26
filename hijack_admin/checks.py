@@ -10,7 +10,13 @@ from hijack import settings as hijack_settings
 
 def _using_hijack_admin_mixin():
     from hijack_admin.admin import HijackUserAdminMixin
-    user_admin_class = type(admin.site._registry.get(get_user_model(), None))
+
+    user_admin_class_name = getattr(
+        settings, 'HIJACK_USER_ADMIN_CLASS_NAME', None)
+    user_admin_class = user_admin_class_name \
+        if user_admin_class_name else type(
+            admin.site._registry.get(get_user_model(), None))
+
     return issubclass(user_admin_class, HijackUserAdminMixin)
 
 
