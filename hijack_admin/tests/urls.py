@@ -1,5 +1,5 @@
 """URLs to run the tests."""
-from from django.urls import include, re_path
+from django.urls import include, re_path
 
 from django.contrib import admin
 

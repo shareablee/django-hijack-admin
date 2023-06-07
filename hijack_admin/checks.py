@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 
-from hijack import settings as hijack_settings
+from hijack.conf import settings as hijack_settings
 
 
 def _using_hijack_admin_mixin():
